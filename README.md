@@ -1,1 +1,2 @@
 # TwitterLikeApp
+# Author: Piotr Czupryn
