@@ -1,7 +1,7 @@
 <?php
 
 //Klasa do obsługi tabeli User
-class Users {
+class User {
 
     private $id;
     private $username;
@@ -15,9 +15,19 @@ class Users {
         $this->hashedPassword = "";
     }
 
+//setters
+
     public function setPassword($newPassword) {
         $newHashedPassword = password_hash($newPassword, PASSWORD_BCRYPT);
         $this->hashedPassword = $newHashedPassword;
+    }
+
+    public function setUsername($newUserName) {
+        $this->username = $newUserName;
+    }
+
+    public function setEmail($newEmailAddress) {
+        $this->email = $newEmailAddress;
     }
 
     public function saveToDB(mysqli $connection) {
@@ -28,10 +38,14 @@ class Users {
             $sql = "INSERT INTO User(username, email, password)
 VALUES ('$this->username', '$this->email', '$this->hashedPassword')";
             $result = $connection->query($sql);
+            var_dump($result);
+            var_dump($connection->error);
+            
             if ($result == true) {
-                $this->id = $connection->insert_id;
+                $this->id = $connection->insert_id;  //insert_id returns the auto generated id used in the last query
                 return true;
             }
+            
         }
         return false;
     }
