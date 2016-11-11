@@ -1,7 +1,10 @@
 <?php
+session_start();
+
 
 require_once '../Model/Tweet.php';
 require_once '../Model/Database.php';
+
 
 $tweets=['pierwszy','drugi','trzeci'];
 

@@ -1,2 +1,2 @@
 id numbers in database User when adding User with email that already exists in database
-
+email as empty string validation
