@@ -10,11 +10,13 @@ $conn = Database::createConnection();
 
 include '../View/login.php';
 
-if ($_SESSION['loggedIn'] == true) {
+
+if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true) {
     echo "You're logged in already";
     movePage(100, './mainPage.php');  
 } 
 else {
+
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $email = $_POST['email'];
         $password = $_POST['password'];
@@ -27,7 +29,7 @@ else {
                 $_SESSION['loggedIn'] = true;
                 $_SESSION['username'] = $loadedUser->getUsername();
                 $_SESSION['userEmail'] = $loadedUser->getEmail();
-                $_SESSION['userId'] = $loadedUser->getId();
+                $_SESSION['User_id'] = $loadedUser->getId();
                 movePage(100, './mainPage.php');
             } else {
                 echo "incorrect login/password.Try again";

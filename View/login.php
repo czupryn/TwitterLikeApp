@@ -8,5 +8,5 @@
     <input type="submit" value="Login">
 </form>
     <div>
-        <a href="./registerForm.php"> Register yourself</a>
+        <a href="../View/registerForm.php"> Register yourself</a>
     </div>

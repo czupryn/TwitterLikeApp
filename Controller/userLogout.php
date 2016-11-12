@@ -12,5 +12,8 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true) {
     
     echo "Successfully logged out!<br>";
 }
+else{
+    $_SESSION['loggedIn'] = false;
+}
 include_once '../View/goToLogin.php';
 

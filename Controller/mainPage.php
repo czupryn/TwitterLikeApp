@@ -9,13 +9,12 @@ session_start();
 if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true) {
     require_once '../Model/Database.php';
     
+    echo " Hello, ". $_SESSION['username']."! ";
     include_once '../View/logout.php';
-    echo "Hello, ". $_SESSION['username']."!";
     
-    
-    
-    $conn = Database::createConnection();
     require_once '../Model/Tweet.php';
+    
+    include_once '../Controller/createTweet.php';
     include_once '../Controller/showPosts.php';
     
 }
