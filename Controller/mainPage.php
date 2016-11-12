@@ -1,20 +1,24 @@
 <?php
-
 session_start();
 
-require_once '../Model/Database.php';
-require_once '../Model/Tweet.php';
+
+
+
 
 
 if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true) {
+    require_once '../Model/Database.php';
     
-    
+    include_once '../View/logout.php';
     echo "Hello, ". $_SESSION['username']."!";
     
+    
+    
     $conn = Database::createConnection();
+    require_once '../Model/Tweet.php';
+    include_once '../Controller/showPosts.php';
     
-    include_once '../Controller/posts.php';
-    
-} else {
-    echo "log in to see this page";
+}
+else {
+    include_once '../View/login.php';
 }

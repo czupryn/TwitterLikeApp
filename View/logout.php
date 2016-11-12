@@ -1,0 +1,1 @@
+<a href="../Controller/userLogout.php">Log out</a>

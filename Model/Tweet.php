@@ -32,7 +32,7 @@ class Tweet {
     //getters
 
     public function getUser_id() {
-        return $this->message;
+        return $this->User_id;
     }
 
     public function getCreationDate() {
@@ -74,7 +74,7 @@ class Tweet {
                 $loadedTweet->message = $row['message'];
                 $loadedTweet->creationDate = $row['creationDate'];
 
-                $ret[] = $loadedUser;
+                $ret[] = $loadedTweet;
             }
         }
         return $ret;
