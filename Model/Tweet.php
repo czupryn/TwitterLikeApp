@@ -45,7 +45,7 @@ class Tweet {
 
     static public function loadTweetById(mysqli $connection, $id) {
         $queryLoadTweet = "SELECT * FROM Tweet WHERE `id`=(?)";
-        $result = $connection->prepare($queryLoadUsers);
+        $result = $connection->prepare($queryLoadTweet);
         $result->bind_param('i', $id);
         $result->execute();
         $searchResult = $result->get_result();
@@ -58,12 +58,14 @@ class Tweet {
             $loadedTweet->message = $row['message'];
             $loadedTweet->creationDate = $row['creationDate'];
             return $loadedTweet;
+            
+//            SELECT `Tweet`.*, `User`.`username`, `User`.`email` FROM `Tweet` LEFT JOIN `User` ON `Tweet`.`User_id`=`User`.`id` WHERE `Tweet`.`id` =(?)
         }
         return null;
     }
 
     static public function loadAllTweets(mysqli $connection) {
-        $sql = "SELECT * FROM Tweet";
+        $sql = "SELECT * FROM Tweet ORDER BY `creationDate` DESC";
         $ret = [];
         $result = $connection->query($sql);
         if ($result == true && $result->num_rows != 0) {
@@ -81,10 +83,10 @@ class Tweet {
     }
 
     static public function loadTweetsByUser_id(mysqli $connection, $User_id) {
-        $queryLoadTweets = "SELECT * FROM Tweet WHERE `User_id`=(?)";
+        $queryLoadTweets = "SELECT * FROM Tweet WHERE `User_id`=(?) ORDER BY `creationDate` DESC";
         $ret = [];
         $result = $connection->prepare($queryLoadTweets);
-        $result->bind_param('s', $User_id);
+        $result->bind_param('i', $User_id);
         $result->execute();
         $searchResult = $result->get_result();
         if ($result == true && $searchResult->num_rows != 0) {

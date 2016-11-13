@@ -16,6 +16,7 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true) {
     
     include_once '../Controller/createTweet.php';
     include_once '../Controller/showPosts.php';
+   
     
 }
 else {
